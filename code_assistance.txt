@@ -1,0 +1,130 @@
+Response:
+The current system uses `df.to_markdown()` in `data_analysis\data_processing.py` to format Pandas DataFrames as Markdown tables.  However, the output is ultimately written to a text file using `output.generate_analysis_file()`. The Gemini API response is also written to the same file.  To fully leverage Markdown, we need to ensure the entire output file is formatted and rendered as Markdown.
+
+Here's how we can modify the code to use Markdown consistently for the output:
+
+
+**1.  Modify `data_analysis\data_analysis.py`:**
+
+Instead of embedding the Markdown table directly into the prompt sent to Gemini, let's generate a separate Markdown file containing the table and the Gemini analysis separately.  This gives better separation and avoids potential formatting conflicts within the prompt itself.
+
+```python
+--- a/src/data_analysis/data_analysis.py
++++ b/src/data_analysis/data_analysis.py
+@@ -15,25 +15,22 @@
+     df = data_processing.handle_missing_values(df)
+ 
+     # 3. Format data as Markdown table
+-    markdown_table = data_processing.format_data_as_markdown_table(df)
++    markdown_table_string = data_processing.format_data_as_markdown_table(df)
+ 
+     # 4. Craft prompt (simplified)
+     final_prompt = f"""
+     You are an experienced data analyst examining a table of drug data from a PostgreSQL database.
+-    The data is presented in a Markdown table. You will not generate the table, it is just for you to reference
+     The table is made of the following columns: activeingredient, company, form, group, new_price
+ 
+-    {markdown_table}
+-
+     Analyze the data and provide a concise summary, noting:
+-
+     *   The most frequent active ingredients.
+     *   The main companies involved.
+     *   The common drug forms.
+     *   The different drug groups.
+     *   The range of prices (minimum and maximum).
+-    *   The location of any rows that have empty strings in the cells.
+-
++    * The location of any rows with empty strings.
+     Provide a report suitable for management to review in order to make business decisions.
+     """
+-    #Data Analysis do not require Code Context
+-    #Returning final prompt instead of prompt generation, as it does not make sense
+-
+-    return final_prompt
++    return final_prompt, markdown_table_string
+
+```
+
+**2. Modify `output.py`:**
+
+This function will now create a markdown file containing both the table and the Gemini response.
+
+```python
+--- a/src/output.py
++++ b/src/output.py
+@@ -1,13 +1,18 @@
+ from . import gemini_api
+ 
+-def generate_analysis_file(prompt, output_file, code_prompt=None):
++def generate_analysis_file(prompt, markdown_table, output_file, code_prompt=None):
+     """Processes the prompt using the gemini API and writes the prompt and analysis result to a file.
+        Conditionally includes the code prompt in the output."""
+ 
+     analysis_result, usage_metadata = gemini_api.generate_content(prompt)
+ 
+     if analysis_result:
+-        try:
+-            with open(output_file, "w") as f:
+-                f.write(f"Response:\n{analysis_result}")  # Always write the response
+-                if code_prompt:
+-                    f.write(f"\n\nCode prompt:\n{code_prompt}") #Write code prompt only if it exists
++        markdown_output = f"""# Data Analysis Report
+ 
+-            print(f"Prompt and Response written to {output_file}")
+-        except IOError as e:
+-            print(f"Error writing to file: {e}")
++## Data Table
++{markdown_table}
++
++## Gemini Analysis
++{analysis_result}
++"""
++        output.write_to_file(markdown_output, output_file)
+ 
+         # Print token usage information
+         if usage_metadata:
+@@ -18,6 +23,16 @@
+             print("\nToken Usage: Not available.")  # Handle case where usage_metadata is None
+     else:
+         print("Gemini API request failed.") #Handle case where Gemini API fails
++
++def write_to_file(content, filename):
++    """Writes content to a file, handling potential errors."""
++    try:
++        with open(filename, "w", encoding="utf-8") as f:
++            f.write(content)
++        print(f"Output written to {filename}")
++    except IOError as e:
++        print(f"Error writing to file {filename}: {e}")
++
+ 
+ def count_tokens(prompt):
+     """Counts the number of tokens in a given text prompt."""
+@@ -25,4 +40,4 @@
+     return model.count_tokens(prompt) # Count the tokens and return it
+ 
+ 
+-==================== End of src\output.py ====================
++
+
+```
+
+**3. Modify `main.py`:**
+
+```python
+--- a/src/main.py
++++ b/src/main.py
+@@ -30,7 +30,8 @@
+         conn = database.connect_to_db()
+         if not conn:
+             exit()
+-        prompt = data_analysis.analyze_data_and_generate_report(conn)
++        prompt, markdown_table = data_analysis.analyze_data_and_generate_report(conn)
+         output.generate_analysis_file(prompt, markdown_table, "data_analysis.md")
+         conn.close()
+ 
+
+```
+
+These changes ensure that the output is a well-formatted Markdown file, improving readability and making it easier to share and integrate into other systems.  Remember to create a `.env` file with the necessary API keys and database credentials.  The output file will now be an `.md` file containing both the data table and the Gemini analysis.  This better addresses the user's request to use Markdown for output.

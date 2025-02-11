@@ -4,7 +4,7 @@ from .file_handler import FileHandler
 # Initialize the file handler
 file_handler = FileHandler()
 
-def generate_analysis_file(prompt, output_file=None, code_prompt=None):
+def generate_analysis_file(prompt):
     """Processes the prompt using the gemini API and writes the output to a file.
     
     Args:
@@ -15,18 +15,11 @@ def generate_analysis_file(prompt, output_file=None, code_prompt=None):
     analysis_result, usage_metadata = gemini_api.generate_content(prompt)
 
     if analysis_result:
-        try:
-            # Determine the type of output
-            file_type = "code_assistance" if code_prompt else "analysis"
-            
+        try:            
             # Save the file using the file handler
-            saved_filepath = file_handler.save_output(
-                content=analysis_result,
-                file_type=file_type,
-                code_prompt=code_prompt
-            )
+            saved_filepath = file_handler.save_output(content=analysis_result)
 
-            print(f"\nAnalysis saved to: {saved_filepath}")
+            print(f"\nSaved to: {saved_filepath}")
 
             # Print token usage information if available
             if usage_metadata:

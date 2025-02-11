@@ -15,9 +15,7 @@ class FileHandler:
         
         # Create subdirectories for different types of outputs
         self.analysis_dir = os.path.join(self.base_output_dir, "analysis_reports")
-        self.code_assist_dir = os.path.join(self.base_output_dir, "code_assistance")
         os.makedirs(self.analysis_dir, exist_ok=True)
-        os.makedirs(self.code_assist_dir, exist_ok=True)
 
     def _generate_filename_from_content(self, content, max_words=5):
         """Generate a filename from the content's first line or significant keywords."""
@@ -48,7 +46,7 @@ class FileHandler:
                 return filepath
             counter += 1
 
-    def save_output(self, content, file_type="analysis", code_prompt=None):
+    def save_output(self, content):
         """
         Save output content to an appropriately named file in the correct directory.
         
@@ -61,22 +59,17 @@ class FileHandler:
             str: Path to the saved file
         """
         # Determine output directory
-        output_dir = self.analysis_dir if file_type == "analysis" else self.code_assist_dir
+        self.analysis_dir
         
         # Generate base name from content
-        if code_prompt:
-            base_name = self._generate_filename_from_content(code_prompt)
-        else:
-            base_name = self._generate_filename_from_content(content)
+        base_name = self._generate_filename_from_content(content)
         
         # Get unique filepath
-        filepath = self._get_unique_filepath(output_dir, base_name, "md")
+        filepath = self._get_unique_filepath(self.analysis_dir, base_name, "md")
         
         # Write content to file
         try:
             with open(filepath, "w", encoding="utf-8") as f:
-                if code_prompt:
-                    f.write(f"# Code Assistance Request: {code_prompt}\n\n")
                 f.write(content)
             
             return filepath

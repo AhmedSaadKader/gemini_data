@@ -1,33 +1,29 @@
-# src/main.py
+from .file_handler import FileHandler
 from .data_analysis import database
-from . import gemini_api
+from .gemini_api import initialize_gemini
 from .data_analysis import data_analysis
-from .code_assistance import code_assistance
-from . import output
+from .output import generate_analysis_file
+
 def main():
-    # 1. Initialize Gemini API
-    gemini_api.initialize_gemini()
-
-    mode = input("What mode do you want to use? Data Analysis or Code Assistance (d/c): ").lower()
-
-    if mode == 'd':
-        # 2. Connect to the database
-        conn = database.connect_to_db()
-        if not conn:
-            exit()
-        prompt = data_analysis.analyze_data_and_generate_report(conn)
-        output.generate_analysis_file(prompt, output_file="analysis_report.md")  # Changed extension to .md
+    # Initialize components
+    initialize_gemini()
+    file_handler = FileHandler()
+    
+    # Connect to database
+    conn = database.connect_to_db()
+    if not conn:
+        exit()
+    
+    try:
+        # Process all ingredients
+        results = data_analysis.process_all_ingredients(conn)
+        
+        # Save combined results
+        output_path = data_analysis.save_combined_results(results, file_handler)
+        print(f"Saved combined results to: {output_path}")
+        
+    finally:
         conn.close()
-
-    elif mode == 'c':
-        code_prompt = input("Please provide code prompt: ")
-        prompt = code_assistance.provide_code_assistance(code_prompt)
-        # Print confirmation of files being analyzed
-        print("\nGenerating response based on codebase context...")
-        output.generate_analysis_file(prompt, output_file="code_assistance.md", code_prompt=code_prompt)  # Changed extension to .md
-
-    else:
-        print("Invalid mode selected")
 
 if __name__ == "__main__":
     main()

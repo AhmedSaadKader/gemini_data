@@ -8,7 +8,7 @@ def initialize_gemini():
     """Initializes the Gemini API."""
     global model  # Make model accessible
     genai.configure(api_key=config.GOOGLE_API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash')  # Access the Gemini API here
+    model = genai.GenerativeModel('gemini-2.0-flash')  # Access the Gemini API here
 
 def generate_content(prompt):
     """Generates content using the Gemini API.

@@ -1,0 +1,43 @@
+Drug-Ingredient Mapping Report
+Generated at: 2025-02-13 09:19:13.275040
+Total mappings proposed: 5
+Total failed mappings: 0
+
+=== Successful Mappings ===
+
+Drug: macsen cream 75 gm (ID: 23048)
+Proposed ingredient mappings:
+  Original: dimethicone
+  Matched to: Dimethicone
+  Confidence: 0.98
+  Notes: Exact match
+
+  Original: beeswax
+  Matched to: Beeswax
+  Confidence: 0.98
+  Notes: Exact match
+
+
+Drug: hirsustop 11.5 % topical cream 15 gm (ID: 41092)
+Proposed ingredient mappings:
+  Original: eflornithine
+  Matched to: Eflornithine
+  Confidence: 0.95
+  Notes: Exact match
+
+
+Drug: paroxetine 20mg 30 f.c.tab (ID: 33055)
+Proposed ingredient mappings:
+  Original: paroxetine
+  Matched to: Paroxetine
+  Confidence: 0.98
+  Notes: Exact match
+
+
+Drug: pentalipsy 100 mg 10 caps. (ID: 25021)
+Proposed ingredient mappings:
+  Original: gabapentin
+  Matched to: Gabapentin
+  Confidence: 0.98
+  Notes: Exact match
+

@@ -1,0 +1,62 @@
+Drug-Ingredient Mapping Report
+Generated at: 2025-02-13 09:28:36.742974
+Total mappings proposed: 3
+Total failed mappings: 7
+
+=== Successful Mappings ===
+
+Drug: optocetine 0.5% eye drops (ID: 6622)
+Proposed ingredient mappings:
+  Original: chloramphenicol
+  Matched to: Chloramphenicol
+  Confidence: 0.95
+  Notes: Exact match
+
+
+Drug: idelox 400 mg tab (ID: 11308)
+Proposed ingredient mappings:
+  Original: moxifloxacin
+  Matched to: Moxifloxacin
+  Confidence: 0.98
+  Notes: Exact match
+
+
+Drug: retorinad 10mg 20tabs (ID: 26575)
+Proposed ingredient mappings:
+  Original: torsemide
+  Matched to: Torsemide
+  Confidence: 0.98
+  Notes: Exact match
+
+
+=== Failed Mappings ===
+The following drugs could not be processed:
+
+Drug: vitascorbol 12 tab (chew) (ID: 4013)
+Active ingredients: vitamin c
+Error: No valid ingredient mappings found
+
+Drug: herceptin 150 mg vial for i.v. inf. (ID: 41021)
+Active ingredients: trastuzumab
+Error: No valid ingredient mappings found
+
+Drug: rinto 100 mg 10 sachets (ID: 45755)
+Active ingredients: lactoferrin+ferrous glycinate
+Error: No valid ingredient mappings found
+
+Drug: cimipax 30 f.c. tabs. (ID: 18519)
+Active ingredients: cimicifuga racemosa(black cohosh)
+Error: No valid ingredient mappings found
+
+Drug: calmseef 30 caps. (ID: 18066)
+Active ingredients: passion extract
+Error: No valid ingredient mappings found
+
+Drug: lipicontrol 10/20mg 20 tabs (ID: 34870)
+Active ingredients: atorvastatin+ezetimibe
+Error: No valid ingredient mappings found
+
+Drug: nebasco 5 mg 30 tablets (ID: 43312)
+Active ingredients: nebivolol hydrochloride
+Error: No valid ingredient mappings found
+

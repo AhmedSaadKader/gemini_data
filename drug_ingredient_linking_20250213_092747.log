@@ -1,0 +1,28 @@
+2025-02-13 09:27:48,059 - INFO - Found 3401 known ingredients
+2025-02-13 09:27:48,110 - INFO - Working with sample of 10 drugs (random sampling)
+2025-02-13 09:27:48,111 - INFO - 
+Processing the following drugs:
+2025-02-13 09:27:48,112 - INFO - - vitascorbol 12 tab (chew) (ID: 4013)
+2025-02-13 09:27:48,113 - INFO -   Active ingredients: vitamin c
+2025-02-13 09:27:48,113 - INFO - - herceptin 150 mg vial for i.v. inf. (ID: 41021)
+2025-02-13 09:27:48,114 - INFO -   Active ingredients: trastuzumab
+2025-02-13 09:27:48,114 - INFO - - optocetine 0.5% eye drops (ID: 6622)
+2025-02-13 09:27:48,114 - INFO -   Active ingredients: chloramphenicol
+2025-02-13 09:27:48,115 - INFO - - rinto 100 mg 10 sachets (ID: 45755)
+2025-02-13 09:27:48,116 - INFO -   Active ingredients: lactoferrin+ferrous glycinate
+2025-02-13 09:27:48,116 - INFO - - idelox 400 mg tab (ID: 11308)
+2025-02-13 09:27:48,116 - INFO -   Active ingredients: moxifloxacin
+2025-02-13 09:27:48,117 - INFO - - cimipax 30 f.c. tabs. (ID: 18519)
+2025-02-13 09:27:48,117 - INFO -   Active ingredients: cimicifuga racemosa(black cohosh)
+2025-02-13 09:27:48,117 - INFO - - retorinad 10mg 20tabs (ID: 26575)
+2025-02-13 09:27:48,118 - INFO -   Active ingredients: torsemide
+2025-02-13 09:27:48,118 - INFO - - calmseef 30 caps. (ID: 18066)
+2025-02-13 09:27:48,119 - INFO -   Active ingredients: passion extract
+2025-02-13 09:27:48,119 - INFO - - lipicontrol 10/20mg 20 tabs (ID: 34870)
+2025-02-13 09:27:48,119 - INFO -   Active ingredients: atorvastatin+ezetimibe
+2025-02-13 09:27:48,120 - INFO - - nebasco 5 mg 30 tablets (ID: 43312)
+2025-02-13 09:27:48,120 - INFO -   Active ingredients: nebivolol hydrochloride
+2025-02-13 09:27:48,120 - INFO - 
+Processing batch 1/1
+2025-02-13 09:28:36,741 - INFO - Progress: 100.0% - Found 3 mappings in this batch
+2025-02-13 09:28:38,756 - INFO - Database connection closed

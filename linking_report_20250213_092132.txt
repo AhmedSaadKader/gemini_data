@@ -1,0 +1,30 @@
+Drug-Ingredient Mapping Report
+Generated at: 2025-02-13 09:22:25.975790
+Total mappings proposed: 3
+Total failed mappings: 0
+
+=== Successful Mappings ===
+
+Drug: elixage massage gel 50gram (ID: 19914)
+Proposed ingredient mappings:
+  Original: camphor
+  Matched to: Camphor
+  Confidence: 0.98
+  Notes: Exact match
+
+
+Drug: hydroferrin 50mg/ml oral drops 30 ml (ID: 11259)
+Proposed ingredient mappings:
+  Original: iron
+  Matched to: Iron
+  Confidence: 0.95
+  Notes: Exact match
+
+
+Drug: peptamen ace milk 430 gm (ID: 32610)
+Proposed ingredient mappings:
+  Original: extra care milk formula
+  Matched to: Adapted milk formula
+  Confidence: 0.9
+  Notes: Close match; extra care milk formula is a type of adapted milk formula.
+
